@@ -7,19 +7,15 @@ import com.myexerciseplanner.myexerciseplanner.Repository.ExerciseRepository;
 
 import javax.inject.Inject;
 
-public class MainViewModel extends ViewModel {
+public class ExerciseViewModel extends ViewModel {
 
     @Inject ExerciseRepository mExerciseRepository;
 
-    public MainViewModel(){
+    public ExerciseViewModel(){
         DaggerAppComponent.builder().build().inject(this);
     }
 
     public String getSomeText(){
-        return mExerciseRepository.getMainFragmentSampleText();
-    }
-
-    public String getSomeTextTwo(){
-        return mExerciseRepository.getMainFragmentTwoSampleText();
+        return mExerciseRepository.getExerciseFragmentSampleText();
     }
 }

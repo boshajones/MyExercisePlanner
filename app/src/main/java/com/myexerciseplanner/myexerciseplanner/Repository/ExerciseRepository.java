@@ -9,7 +9,15 @@ public class ExerciseRepository {
         mExerciseDataProvider = exerciseDataProvider;
     }
 
-    public String getSomeText(){
-        return mExerciseDataProvider.getSomeText();
+    public String getMainFragmentSampleText(){
+        return mExerciseDataProvider.getMainFragmentSampleText();
+    }
+
+    public String getMainFragmentTwoSampleText(){
+        return mExerciseDataProvider.getMainFragmentTwoSampleText();
+    }
+
+    public String getExerciseFragmentSampleText(){
+        return mExerciseDataProvider.getExerciseFragmentSampleText();
     }
 }
