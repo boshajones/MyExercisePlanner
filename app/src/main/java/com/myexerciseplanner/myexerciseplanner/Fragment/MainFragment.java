@@ -14,19 +14,31 @@ import com.myexerciseplanner.myexerciseplanner.ViewModel.MainViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainFragment extends Fragment {
 
-    private MainViewModel mMainViewModel;
-
     @BindView(R.id.some_text_id) TextView mSomeText;
+
+    private MainViewModel mMainViewModel;
+    private FragmentListener mFragmentListener;
+
+
+    public static MainFragment newInstance(FragmentListener fragmentListener) {
+        MainFragment mainFragment = new MainFragment();
+        mainFragment.setFragmentListener(fragmentListener);
+
+        return mainFragment;
+    }
+
+    private void setFragmentListener(FragmentListener fragmentListener){
+        mFragmentListener = fragmentListener;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, parent, false);
-
         ButterKnife.bind(this, view);
-
         return view;
     }
 
@@ -35,7 +47,16 @@ public class MainFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         mMainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-
         mSomeText.setText(mMainViewModel.getSomeText());
+    }
+
+    @OnClick(R.id.callback_button_id)
+    public void onClickCallbackButton(View v) {
+        mFragmentListener.onNavigate(null);
+    }
+
+    public interface FragmentListener
+    {
+        void onNavigate(Fragment fragment);
     }
 }
